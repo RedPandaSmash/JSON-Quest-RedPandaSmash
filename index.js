@@ -7,14 +7,12 @@ const path = require("path");
 
 const PORT = 3000;
 
-app.listen(PORT, () => {
-  console.log(`Listening on PORT ${PORT}`);
-});
+app.use(express.json);
 
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static("api"));
-app.use(express.static("public"));
+// app.use(express.static("public"));
 const cors = require("cors");
 app.use(cors());
 
@@ -46,4 +44,8 @@ app.post("/submitted", (req, res) => {
       }
     }
   );
+});
+
+app.listen(PORT, () => {
+  console.log(`Listening on PORT ${PORT}`);
 });
