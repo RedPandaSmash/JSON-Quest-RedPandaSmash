@@ -6,13 +6,13 @@
     <title>Document</title>
   </head>
   <body>
-    <form action="/submitted" method="POST">
-      <label for="name">Enter Name: </label>
+    <form action="/submitted" method="POST" id="questform">
+      <label for="name">Enter name: </label>
       <input
         type="text"
         id="name"
         name="name"
-        placeholder="Enter your noun!"
+        placeholder="Enter your name!"
         required
       />
       <br />
@@ -21,7 +21,7 @@
         type="text"
         id="quest"
         name="quest"
-        placeholder="Enter your noun!"
+        placeholder="Enter your quest!"
         required
       />
       <br /><label for="color">Enter color: </label>
@@ -29,12 +29,13 @@
         type="text"
         id="color"
         name="color"
-        placeholder="Enter your noun!"
+        placeholder="Enter your color!"
         required
       />
       <br />
       <button id="submit" type="submit">Insert your word!</button>
     </form>
-    <script src="/script.js"></script>
+    <div id="message" style="margin-top: 5rem; font-weight: bold"></div>
+    <script src="script.js"></script>
   </body>
 </html>

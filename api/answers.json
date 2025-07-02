@@ -1,5 +1,5 @@
 {
-  "name:": "potato",
-  "quest": ["slay the dragon", "find the treasure"],
-  "favorite color": "brown"
+  "name": "potato",
+  "quest": "slay the dragon",
+  "color": "brown"
 }

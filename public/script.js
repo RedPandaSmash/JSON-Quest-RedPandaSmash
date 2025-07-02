@@ -1,25 +1,41 @@
-const inputName = document.getElementById("name");
-const inputQuest = document.getElementById("quest");
-const inputColor = document.getElementById("color");
-let name = "";
-let quest = "";
-let color = "";
+// const inputName = document.getElementById("name");
+// const inputQuest = document.getElementById("quest");
+// const inputColor = document.getElementById("color");
+const form = document.getElementById("questform");
+const message = document.getElementById("message");
+const userAnswers = { name: "", quest: "", color: "" };
 
-inputName.addEventListener("change", function (event) {
-  name = event.target.value;
-});
-inputQuest.addEventListener("change", function (event) {
-  quest = event.target.value;
-});
-inputColor.addEventListener("change", function (event) {
-  color = event.target.value;
-});
-
-fetch("/answers.json")
-  .then((response) => response.json())
-  .then((data) => {
-    console.log(`The raw data from answers.json: ${data}`);
-  })
-  .catch((error) => {
-    console.error(`oops: ${error}`);
+["name", "quest", "color"].forEach((field) => {
+  form[field].addEventListener("change", (e) => {
+    userAnswers[field] = e.target.value.trim();
   });
+});
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  message.textContent = "checking...";
+
+  try {
+    const res = await fetch("/api/answers");
+    const resjson = await res.json();
+    console.log("userAnswers.name:", userAnswers.name);
+    console.log("userAnswers.quest:", userAnswers.quest);
+    console.log("userAnswers.color:", userAnswers.color);
+
+    const passed =
+      userAnswers.name === resjson.name &&
+      userAnswers.quest === resjson.quest &&
+      userAnswers.color === resjson["color"];
+    message.textContent = passed ? "you may pass..." : "you may not pass go.";
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+// fetch("/api/answers.json")
+//   .then((response) => response.json())
+//   .then((data) => {
+//     console.log(`The raw data from answers.json: ${data}`);
+//   })
+//   .catch((error) => {
+//     console.error(`oops: ${error}`);
+//   });
