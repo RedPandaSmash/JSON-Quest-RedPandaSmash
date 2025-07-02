@@ -1,6 +1,3 @@
-// const inputName = document.getElementById("name");
-// const inputQuest = document.getElementById("quest");
-// const inputColor = document.getElementById("color");
 const form = document.getElementById("questform");
 const message = document.getElementById("message");
 const userAnswers = { name: "", quest: "", color: "" };
@@ -30,12 +27,3 @@ form.addEventListener("submit", async (e) => {
     console.error(err);
   }
 });
-
-// fetch("/api/answers.json")
-//   .then((response) => response.json())
-//   .then((data) => {
-//     console.log(`The raw data from answers.json: ${data}`);
-//   })
-//   .catch((error) => {
-//     console.error(`oops: ${error}`);
-//   });
